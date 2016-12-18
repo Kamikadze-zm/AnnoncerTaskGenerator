@@ -1,9 +1,6 @@
 package ru.kamikadze_zm.annoncertaskgenerator;
 
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -13,8 +10,6 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -62,12 +57,15 @@ public class Main extends Application {
             //yyyy_MM_dd
             Pattern pattern = Pattern.compile("\\d\\d\\d\\d_\\d\\d_\\d\\d");
             Matcher matcher = pattern.matcher(fileName);
+            String date = "";
             if (matcher.find()) {
-                String date = fileName.substring(matcher.start(), matcher.end());
-                outFileName = "AnnouncerTask_" + date + "txt";
+                date = fileName.substring(matcher.start(), matcher.end());
             }
+            String fullPath = file.getAbsolutePath();
+            outFileName = fullPath.substring(0 , fullPath.lastIndexOf("\\") + 1)
+                        + "AnnouncerTask_" + date + ".txt";
 
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/styles/Styles.css");

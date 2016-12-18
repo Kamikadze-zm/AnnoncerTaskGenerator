@@ -1,7 +1,6 @@
 package ru.kamikadze_zm.annoncertaskgenerator;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -15,18 +14,32 @@ public class ListViewCell extends ListCell<Announcement> {
     private final TextField announcement;
     private final Button actionBtn;
     private final HBox box;
+    private ObservableList<Announcement> announcements;
 
-    public ListViewCell(EventHandler<ActionEvent> event) {
+    public ListViewCell(ObservableList<Announcement> announcements) {
         super();
 
-        setOnMouseClicked((MouseEvent event1) -> {
+        this.announcements = announcements;
+        setOnMouseClicked((MouseEvent event) -> {
         });
 
         actionBtn = new Button("Удалить");
-        actionBtn.setOnAction(event);
+        actionBtn.setOnAction(event -> {
+            this.announcements.remove(this.getItem());
+        });
         movieName = new Label();
+        movieName.setId("movie-name");
         announcement = new TextField();
+        announcement.textProperty().addListener((observable, oldValue, newValue) -> {
+            this.getItem().setAnnouncement(newValue.trim());
+        });
         box = new HBox(movieName, announcement, actionBtn);
+        box.setId("announcement-box");
+        
+        box.prefWidthProperty().bind(this.prefWidthProperty());
+        movieName.prefWidthProperty().bind(box.prefWidthProperty().multiply(0.425));
+        announcement.prefWidthProperty().bind(box.prefWidthProperty().multiply(0.425));
+        actionBtn.prefWidthProperty().bind(box.prefWidthProperty().multiply(0.10));
     }
 
     @Override
