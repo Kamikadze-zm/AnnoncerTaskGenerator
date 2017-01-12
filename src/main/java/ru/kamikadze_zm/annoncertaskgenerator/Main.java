@@ -20,22 +20,29 @@ import ru.kamikadze_zm.onair.Parser;
 import ru.kamikadze_zm.onair.command.Command;
 
 public class Main extends Application {
-
+    
     public static List<Command> commands;
     public static String outFileName;
-
+    
     @Override
     public void start(Stage stage) throws Exception {
-
+        
         final FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("\\\\fs.settv.ru\\incoming"));
-
+        File initFolder = new File("\\\\fs.settv.ru\\incoming");
+        if (initFolder.exists()) {
+            fileChooser.setInitialDirectory(initFolder);
+        } else {
+            fileChooser.setInitialDirectory(new File("."));
+        }
+        fileChooser.setTitle("Выберите расписание (*.air)");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("*.air", "*.air");
+        fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             if (!file.getName().endsWith(".air")) {
                 throw new RuntimeException("Неверное расширение файла. Требуется *.air");
             }
-
+            
             try {
                 commands = Parser.parse(file);
             } catch (OnAirParserException e) {
@@ -52,7 +59,7 @@ public class Main extends Application {
                     System.exit(1);
                 }
             }
-
+            
             String fileName = file.getName();
             //yyyy_MM_dd
             Pattern pattern = Pattern.compile("\\d\\d\\d\\d_\\d\\d_\\d\\d");
@@ -62,14 +69,14 @@ public class Main extends Application {
                 date = fileName.substring(matcher.start(), matcher.end());
             }
             String fullPath = file.getAbsolutePath();
-            outFileName = fullPath.substring(0 , fullPath.lastIndexOf("\\") + 1)
-                        + "AnnouncerTask_" + date + ".txt";
-
+            outFileName = fullPath.substring(0, fullPath.lastIndexOf("\\") + 1)
+                    + "AnnouncerTask_" + date + ".txt";
+            
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
-
+            
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/styles/Styles.css");
-
+            
             stage.setTitle("Генератор файла задания для анонсера");
             stage.setScene(scene);
             stage.show();
@@ -86,5 +93,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
