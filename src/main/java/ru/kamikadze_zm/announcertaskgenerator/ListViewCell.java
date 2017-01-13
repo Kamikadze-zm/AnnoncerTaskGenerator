@@ -1,7 +1,5 @@
-package ru.kamikadze_zm.annoncertaskgenerator;
+package ru.kamikadze_zm.announcertaskgenerator;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

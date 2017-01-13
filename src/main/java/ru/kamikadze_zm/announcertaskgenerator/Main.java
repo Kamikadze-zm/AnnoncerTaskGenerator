@@ -1,4 +1,4 @@
-package ru.kamikadze_zm.annoncertaskgenerator;
+package ru.kamikadze_zm.announcertaskgenerator;
 
 import java.io.File;
 import java.util.List;

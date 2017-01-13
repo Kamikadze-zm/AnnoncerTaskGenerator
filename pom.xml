@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.kamikadze_zm</groupId>
-    <artifactId>annoncer-task-generator</artifactId>
+    <artifactId>announcer-task-generator</artifactId>
     <version>1.1</version>
     <packaging>jar</packaging>
 
-    <name>AnnoncerTaskGenerator</name>
+    <name>AnnouncerTaskGenerator</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>ru.kamikadze_zm.annoncertaskgenerator.Main</mainClass>
+        <mainClass>ru.kamikadze_zm.announcertaskgenerator.Main</mainClass>
     </properties>
 
     <organization>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>ru.kamikadze_zm</groupId>
             <artifactId>onair-parser</artifactId>
-            <version>0.2.2</version>
+            <version>0.2.3</version>
         </dependency>
     </dependencies>
 
