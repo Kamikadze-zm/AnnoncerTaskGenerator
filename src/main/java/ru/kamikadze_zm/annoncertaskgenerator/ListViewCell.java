@@ -46,10 +46,12 @@ public class ListViewCell extends ListCell<Announcement> {
 
         upperCase = new CheckBox();
         upperCase.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                this.getItem().setUpperCase(true);
-            } else {
-                this.getItem().setUpperCase(false);
+            if (this.getItem() != null) {
+                if (newValue) {
+                    this.getItem().setUpperCase(true);
+                } else {
+                    this.getItem().setUpperCase(false);
+                }
             }
         });
 
@@ -73,6 +75,7 @@ public class ListViewCell extends ListCell<Announcement> {
         } else {
             movieName.setText(item.getMovieName());
             announcement.setText(item.getAnnouncement());
+            upperCase.selectedProperty().set(true);
             setGraphic(box);
         }
     }
