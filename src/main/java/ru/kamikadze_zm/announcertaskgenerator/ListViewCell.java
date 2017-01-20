@@ -73,7 +73,7 @@ public class ListViewCell extends ListCell<Announcement> {
         } else {
             movieName.setText(item.getMovieName());
             announcement.setText(item.getAnnouncement());
-            upperCase.selectedProperty().set(true);
+            upperCase.selectedProperty().set(item.isUpperCase());
             setGraphic(box);
         }
     }

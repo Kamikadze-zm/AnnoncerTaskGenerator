@@ -8,8 +8,18 @@ public class Announcement implements Comparable<Announcement> {
     private String announcement;
     private boolean upperCase;
 
-    public Announcement(String movieName) {
+    public Announcement(String movieName, boolean upperCase) {
         this.movieName = movieName;
+        this.announcement = movieName.substring(
+                movieName.lastIndexOf("\\") + 1,
+                movieName.lastIndexOf("."));
+        this.upperCase = upperCase;
+    }
+    
+    public Announcement(String movieName, String announcement, boolean upperCase) {
+        this.movieName = movieName;
+        this.announcement = announcement;
+        this.upperCase = upperCase;
     }
 
     public String getMovieFullName() {
@@ -31,6 +41,10 @@ public class Announcement implements Comparable<Announcement> {
 
     public void setAnnouncement(String announcement) {
         this.announcement = announcement;
+    }
+
+    public boolean isUpperCase() {
+        return upperCase;
     }
 
     public void setUpperCase(boolean upperCase) {
