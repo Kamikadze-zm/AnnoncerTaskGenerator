@@ -25,6 +25,15 @@ public class Announcement implements Comparable<Announcement> {
     public String getMovieFullName() {
         return movieName;
     }
+    
+    public String getMoviePath() {
+        int i = movieName.lastIndexOf("\\");
+        if (i != -1) {
+            return movieName.substring(0, i + 1);
+        } else {
+            return "";
+        }
+    }
 
     public String getMovieName() {
         int i = movieName.lastIndexOf("\\");
@@ -52,7 +61,7 @@ public class Announcement implements Comparable<Announcement> {
     }
     
     public String toTaskString() {
-        String s = movieName + " |";
+        String s = movieName + " " + Main.separator;
         if (upperCase) {
             s += announcement.toUpperCase();
         } else {
@@ -63,7 +72,7 @@ public class Announcement implements Comparable<Announcement> {
 
     @Override
     public int compareTo(Announcement o) {
-        return movieName.compareToIgnoreCase(o.movieName);
+        return getMovieName().compareToIgnoreCase(o.getMovieName());
     }
 
 @Override

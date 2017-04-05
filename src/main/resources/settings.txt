@@ -1,0 +1,25 @@
+#Пути к папкам указываются с обратной косой чертой на конце
+
+#Обратная косая черта ставится два раза
+
+
+
+#Форматирование даты и времени: yyyy - год, MM - месяц (01-12), dd - номер дня в месяце (01-31).
+#Подробнее про формат даты и времени: https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+
+#путь к папке для выбора расписания
+
+schedule-path=\\\\fs.settv.ru\\incoming\\
+
+
+
+#формат даты в названии расписания (Допустимые значения: yyyy, MM, dd)
+schedule-date-format=yyyy_MM_dd
+
+
+
+#путь к файлу с исключениями для анонсера текущего фильма
+announcer-now-exclusions=announcer.txt
+
+#разделитель названия файла и анонса
+announcer-now-separator=|
