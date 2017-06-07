@@ -134,7 +134,7 @@ public class Main extends Application {
         if (matcher.find()) {
             date = fileName.substring(matcher.start(), matcher.end());
         }
-        outFileName = initFolder + Settings.getParameter(SettingsKey.OUT_FILE_NAME).replace("<>", date);
+        outFileName = Settings.getParameter(SettingsKey.SCHEDULE_PATH) + Settings.getParameter(SettingsKey.OUT_FILE_NAME).replace("<>", date);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
         Parent root = loader.load();
