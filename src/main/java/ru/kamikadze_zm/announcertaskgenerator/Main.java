@@ -39,10 +39,12 @@ import ru.kamikadze_zm.onair.command.Movie;
 
 public class Main extends Application {
 
-    private static final Logger LOG = LogManager.getLogger(Main.class);
+    private static Logger LOG;
+    
+    private static final String DEFAULT_APP_NAME = "AnnouncerTaskGenerator";
 
-    public static final String HOME_DIRECTORY = System.getProperty("user.home") + File.separator + "documents" + File.separator
-            + "AnnouncerTaskGenerator" + File.separator;
+    public static final String HOME_DIRECTORY = System.getProperty("user.home") + File.separator
+            + "documents" + File.separator + getAppName() + File.separator;
 
     public static SortedSet<Announcement> announcements;
     public static String outFileName;
@@ -54,6 +56,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        System.setProperty("homeDir", HOME_DIRECTORY);
+        LOG = LogManager.getLogger(Main.class);
+        
         //проверка наличия папки с настройками
         File homeDirectory = new File(HOME_DIRECTORY);
         if (!homeDirectory.exists()) {
@@ -129,8 +134,7 @@ public class Main extends Application {
         if (matcher.find()) {
             date = fileName.substring(matcher.start(), matcher.end());
         }
-        String fullPath = file.getAbsolutePath();
-        outFileName = fullPath.substring(0, fullPath.lastIndexOf("\\") + 1) + "AnnouncerTask_" + date + ".txt";
+        outFileName = initFolder + Settings.getParameter(SettingsKey.OUT_FILE_NAME).replace("<>", date);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
         Parent root = loader.load();
@@ -173,6 +177,22 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    private static String getAppName() {
+        String path = Main.class
+                .getProtectionDomain().getCodeSource().getLocation().toString();
+        int index = path.lastIndexOf("/");
+        if (index != -1) {
+            String name = path.substring(index + 1);
+            if (name.endsWith(".jar")) {
+                index = name.lastIndexOf(".");
+                name = name.substring(0, index);
+                return name.replaceAll("(-\\d\\.\\d)(\\.\\d)?", "");
+            }
+        }
+        return DEFAULT_APP_NAME;
+
     }
 
     //получение анонсов из расписания

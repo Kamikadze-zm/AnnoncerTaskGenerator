@@ -76,6 +76,10 @@ public class Settings {
          */
         SCHEDULE_DATE_FORMAT("schedule-date-format"),
         /**
+         * Название файла задания
+         */
+        OUT_FILE_NAME("out-file-name"),
+        /**
          * Путь к файлу с исключениями для анонсера текущего фильма
          */
         ANNOUNCER_NOW_EXCLUSIONS("announcer-now-exclusions"),

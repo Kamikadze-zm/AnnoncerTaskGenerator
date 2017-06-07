@@ -10,6 +10,6 @@
     <children>
         <ListView fx:id="lvAnnouncements" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Button fx:id="saveBtn" onAction="#saveAndExit" prefHeight="40.0" text="Сохранить и выйти" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Button fx:id="addBtn" layoutX="10.0" layoutY="748.0" onAction="#newAnnouncement" prefHeight="40.0" text="Добваить анонс" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="addBtn" layoutX="10.0" layoutY="748.0" onAction="#newAnnouncement" prefHeight="40.0" text="Добавить анонс" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     </children>
 </AnchorPane>

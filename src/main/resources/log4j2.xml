@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <Property name="log-path">${sys:user.home}/documents/AnnouncerTaskGenerator/logs/</Property>
+        <Property name="log-path">${sys:homeDir}logs</Property>
     </Properties>
     
     <Appenders>

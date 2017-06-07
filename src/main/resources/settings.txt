@@ -17,6 +17,8 @@ schedule-path=\\\\fs.settv.ru\\incoming\\
 schedule-date-format=yyyy_MM_dd
 
 
+#Название файла задания вместо <> подставится дата
+out-file-name=SetAnnouncerTask_<>.txt
 
 #путь к файлу с исключениями для анонсера текущего фильма
 announcer-now-exclusions=announcer.txt
