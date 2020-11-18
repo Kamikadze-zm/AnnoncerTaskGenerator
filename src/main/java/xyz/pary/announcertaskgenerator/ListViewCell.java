@@ -1,4 +1,4 @@
-package ru.kamikadze_zm.announcertaskgenerator;
+package xyz.pary.announcertaskgenerator;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package ru.kamikadze_zm.announcertaskgenerator;
+package xyz.pary.announcertaskgenerator;
 
 public class AnnouncerTaskGeneratorException extends Exception {
 

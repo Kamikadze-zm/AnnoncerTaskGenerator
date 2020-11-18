@@ -1,4 +1,4 @@
-package ru.kamikadze_zm.announcertaskgenerator;
+package xyz.pary.announcertaskgenerator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,11 +31,11 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.kamikadze_zm.announcertaskgenerator.Settings.SettingsKey;
-import ru.kamikadze_zm.onair.OnAirParserException;
-import ru.kamikadze_zm.onair.Parser;
-import ru.kamikadze_zm.onair.command.Command;
-import ru.kamikadze_zm.onair.command.Movie;
+import xyz.pary.announcertaskgenerator.Settings.SettingsKey;
+import xyz.pary.onair.OnAirParserException;
+import xyz.pary.onair.Parser;
+import xyz.pary.onair.command.Command;
+import xyz.pary.onair.command.Movie;
 
 public class Main extends Application {
 

@@ -1,4 +1,4 @@
-package ru.kamikadze_zm.announcertaskgenerator;
+package xyz.pary.announcertaskgenerator;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -1,4 +1,4 @@
-package ru.kamikadze_zm.announcertaskgenerator;
+package xyz.pary.announcertaskgenerator;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static ru.kamikadze_zm.announcertaskgenerator.Main.HOME_DIRECTORY;
+import static xyz.pary.announcertaskgenerator.Main.HOME_DIRECTORY;
 
 public class Settings {
 
