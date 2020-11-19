@@ -29,8 +29,8 @@ public class Settings {
      * @throws IOException если не удалось прочитать файл
      * @throws SettingsException в случае отсутствующего параметра или пустого значения
      */
-    public static void loadSettings() throws IOException, SettingsException {
-        try (InputStreamReader is = new InputStreamReader(new FileInputStream(new File(SETTINGS_FILE)), Charset.forName("cp1251"))) {
+    public static void loadSettings(File file) throws IOException, SettingsException {
+        try (InputStreamReader is = new InputStreamReader(new FileInputStream(file), Charset.forName("cp1251"))) {
             Properties p = new Properties();
             p.load(is);
             for (SettingsKey k : SettingsKey.values()) {

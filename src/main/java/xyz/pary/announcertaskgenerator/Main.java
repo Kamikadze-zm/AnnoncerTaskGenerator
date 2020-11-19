@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,17 +41,17 @@ import xyz.pary.onair.command.Movie;
 public class Main extends Application {
 
     private static Logger LOG;
-    
+
     private static final String DEFAULT_APP_NAME = "AnnouncerTaskGenerator";
 
     public static final String HOME_DIRECTORY = System.getProperty("user.home") + File.separator
-            + "documents" + File.separator + getAppName() + File.separator;
+            + "Documents" + File.separator + getAppName() + File.separator;
 
     public static SortedSet<Announcement> announcements;
     public static String outFileName;
 
     public static String separator = "|";
-    
+
     public static Set<String> paths = new HashSet<String>();
 
     @Override
@@ -58,7 +59,7 @@ public class Main extends Application {
 
         System.setProperty("homeDir", HOME_DIRECTORY);
         LOG = LogManager.getLogger(Main.class);
-        
+
         //проверка наличия папки с настройками
         File homeDirectory = new File(HOME_DIRECTORY);
         if (!homeDirectory.exists()) {
@@ -67,7 +68,22 @@ public class Main extends Application {
 
         //загрузка настрроек
         try {
-            Settings.loadSettings();
+            File settingsFile = new File(Settings.SETTINGS_FILE);
+            if (!settingsFile.exists()) {
+                final FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Выберите файл с настройками (в кодировке cp1251) - будет скопирован в " + Settings.SETTINGS_FILE);
+                fileChooser.getExtensionFilters().add(new ExtensionFilter("All Files", "*.*"));
+                File file = fileChooser.showOpenDialog(stage);
+                if (file != null) {
+                    try {
+                        Files.copy(file.toPath(), settingsFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException ce) {
+                        LOG.error("Error of copying settings file: ", ce);
+                        showErrorAndExit("Не удалось скопировать файл с настройками");
+                    }
+                }
+            }
+            Settings.loadSettings(settingsFile);
             separator = Settings.getParameter(SettingsKey.ANNOUNCER_NOW_SEPARATOR);
         } catch (SettingsException e) {
             showErrorAndExit(e.getMessage());
@@ -135,7 +151,7 @@ public class Main extends Application {
             date = fileName.substring(matcher.start(), matcher.end());
         }
         outFileName = Settings.getParameter(SettingsKey.SCHEDULE_PATH) + Settings.getParameter(SettingsKey.OUT_FILE_NAME).replace("<>", date);
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
         Parent root = loader.load();
         loader.<MainController>getController().setStage(stage);
@@ -178,7 +194,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
     private static String getAppName() {
         String path = Main.class
                 .getProtectionDomain().getCodeSource().getLocation().toString();
