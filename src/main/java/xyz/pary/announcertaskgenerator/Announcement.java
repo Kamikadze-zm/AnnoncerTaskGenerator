@@ -61,7 +61,7 @@ public class Announcement implements Comparable<Announcement> {
     }
     
     public String toTaskString() {
-        String s = movieName + " " + Main.separator;
+        String s = movieName + " " + App.separator;
         if (upperCase) {
             s += announcement.toUpperCase();
         } else {

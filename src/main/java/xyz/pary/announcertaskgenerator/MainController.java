@@ -34,7 +34,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        announcements.addAll(Main.announcements);
+        announcements.addAll(App.announcements);
 
         lvAnnouncements.setCellFactory(f -> new ListViewCell(announcements) {
             {
@@ -62,26 +62,26 @@ public class MainController implements Initializable {
             announcementForm.show();
         } catch (IOException e) {
             LOG.warn("Load Announcement.fxml exception: ", e);
-            Main.showMessage("Ошибка", "Не удалось загрузить форму создания анонса", Alert.AlertType.ERROR);
+            App.showMessage("Ошибка", "Не удалось загрузить форму создания анонса", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void saveAndExit(ActionEvent event) {
         try (OutputStreamWriter writer = new OutputStreamWriter(
-                new FileOutputStream(Main.outFileName, false))) {
+                new FileOutputStream(App.outFileName, false))) {
             for (Announcement a : announcements) {
                 writer.write(a.toTaskString().trim() + System.lineSeparator());
                 writer.flush();
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Сохранено");
-            alert.setHeaderText("Записано в файл: " + Main.outFileName);
+            alert.setHeaderText("Записано в файл: " + App.outFileName);
             alert.showAndWait();
             Main.exit(0);
         } catch (IOException e) {
-            LOG.warn("Write announcements to file - " + Main.outFileName + "exception: ", e);
-            Main.showErrorAndExit("Ошибка записи в файл: " + Main.outFileName);
+            LOG.warn("Write announcements to file - " + App.outFileName + "exception: ", e);
+            App.showErrorAndExit("Ошибка записи в файл: " + App.outFileName);
         }
     }
     

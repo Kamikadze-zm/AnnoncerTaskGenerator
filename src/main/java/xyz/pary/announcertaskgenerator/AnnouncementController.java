@@ -34,7 +34,7 @@ public class AnnouncementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        usedPaths.setItems(FXCollections.observableArrayList(Main.paths));
+        usedPaths.setItems(FXCollections.observableArrayList(App.paths));
         symbolsCount.textProperty().bind(announcement.lengthProperty().asString());
         upperCase.selectedProperty().set(true);
     }
@@ -49,12 +49,12 @@ public class AnnouncementController implements Initializable {
     @FXML
     private void addAnnouncement(ActionEvent event) {
         if (moviePath.getText().isEmpty()) {
-            Main.showMessage("Ошибка", "Не указан путь к файлу", Alert.AlertType.ERROR);
+            App.showMessage("Ошибка", "Не указан путь к файлу", Alert.AlertType.ERROR);
             return;
         }
         Announcement a = new Announcement(moviePath.getText(), announcement.getText(), upperCase.selectedProperty().get());
         if (a.getMovieName().isEmpty()) {
-            Main.showMessage("Ошибка", "Не указано имя файла", Alert.AlertType.ERROR);
+            App.showMessage("Ошибка", "Не указано имя файла", Alert.AlertType.ERROR);
             return;
         }
         parentController.addAnnouncement(a);
